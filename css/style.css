@@ -10,8 +10,9 @@
 	--color-gray: #2a2d30;
 	--color-black: #0d0d0d;
 	--color-pure-black: #000000;
+	--color-shadow-black: #00000077;
 
-	--header-bg-color: var(--color-gray);
+	--header-bg-color: var(--color-black);
 	--main-bg-color: var(--color-gray);
 	--calculator-body-bg-color: var(--color-black);
 	--calculator-display-bg-color: var(--color-white);
@@ -88,6 +89,7 @@ main {
 	max-width: 500px;
 	border-radius: 10px;
 	padding: 1rem;
+	box-shadow: 20px 20px 5px 5px var(--color-shadow-black);
 
 	display: flex;
 	flex-flow: column nowrap;
