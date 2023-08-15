@@ -144,7 +144,8 @@ main {
 	color: var(--calculator-decimal-button-fg-color);
 }
 
-.calculator-clear-button {
+.calculator-clear-button,
+.calculator-all-clear-button {
 	background: var(--calculator-clear-button-bg-color);
 	color: var(--calculator-clear-button-fg-color);
 }

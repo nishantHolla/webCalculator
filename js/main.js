@@ -69,6 +69,16 @@ function makeClearButton(_DOM_ELEMENT, _text) {
 	})
 }
 
+function makeAllClearButton(_DOM_ELEMENT, _text) {
+	_DOM_ELEMENT.classList.add('calculator-all-clear-button')
+	_DOM_ELEMENT.addEventListener('click', () => {
+		equationTerm = '0'
+		equation = ''
+		canAddDecimal = true
+		refreshCalculatorDisplay()
+	})
+}
+
 // fill calculator inputs
 
 CALCULATOR_BUTTON_LAYOUT.forEach( (BUTTON_TEXT) => {
@@ -88,6 +98,9 @@ CALCULATOR_BUTTON_LAYOUT.forEach( (BUTTON_TEXT) => {
 
 	else if (BUTTON_TEXT === 'C')
 		makeClearButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
+
+	else if (BUTTON_TEXT === 'AC')
+		makeAllClearButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
 
 	// add dom button to calculator inputs
 	DOM_CALCULATOR_INPUTS.appendChild(DOM_CALCULATOR_BUTTON)
