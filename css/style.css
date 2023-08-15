@@ -35,6 +35,9 @@
 
 	--calculator-equals-to-button-bg-color: var(--color-orange);
 	--calculator-equals-to-button-fg-color: var(--color-black);
+
+	--footer-bg-color: var(--color-gray);
+	--footer-fg-color: var(--color-white);
 }
 
 /* --- */
@@ -168,4 +171,22 @@ main {
 .calculator-equals-to-button {
 	background: var(--calculator-equals-to-button-bg-color);
 	color: var(--calculator-equals-to-button-fg-color);
+}
+
+/* --- */
+
+footer {
+	background: var(--footer-bg-color);
+	color: var(--footer-fg-color);
+	padding: 5px;
+
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	align-items: flex-end;
+
+}
+
+footer img {
+	width: 30px;
 }
