@@ -31,6 +31,9 @@
 
 	--calculator-operation-button-bg-color: var(--color-red);
 	--calculator-operation-button-fg-color: var(--color-black);
+
+	--calculator-equals-to-button-bg-color: var(--color-orange);
+	--calculator-equals-to-button-fg-color: var(--color-black);
 }
 
 /* --- */
@@ -158,4 +161,9 @@ main {
 .calculator-operation-button {
 	background: var(--calculator-operation-button-bg-color);
 	color: var(--calculator-operation-button-fg-color);
+}
+
+.calculator-equals-to-button {
+	background: var(--calculator-equals-to-button-bg-color);
+	color: var(--calculator-equals-to-button-fg-color);
 }

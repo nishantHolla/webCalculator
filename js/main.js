@@ -129,6 +129,19 @@ function makeAllClearButton(_DOM_ELEMENT, _text) {
 	})
 }
 
+function makeEqualsToButton(_DOM_ELEMENT, _text) {
+	_DOM_ELEMENT.classList.add('calculator-equals-to-button')
+	_DOM_ELEMENT.addEventListener('click', () => {
+		if (equation.length === 0)
+			return
+
+		equationTerm = `${evaluate(equation+equationTerm)}`
+		equation = ''
+		canAddDecimal = true
+		refreshCalculatorDisplay()
+	})
+}
+
 function makeOperationButton(_DOM_ELEMENT, _text) {
 	_DOM_ELEMENT.classList.add('calculator-operation-button')
 	_DOM_ELEMENT.addEventListener('click', () => {
@@ -188,7 +201,7 @@ CALCULATOR_BUTTON_LAYOUT.forEach( (BUTTON_TEXT) => {
 		makeAllClearButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
 
 	else if (BUTTON_TEXT === '=')
-	{}
+		makeEqualsToButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
 
 	else
 		makeOperationButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
