@@ -17,6 +17,7 @@ const CALCULATOR_BUTTON_LAYOUT = [
 
 const CALCULATOR_BUTTONS = {}
 
+const PRECISION = 8
 let equation = ''
 let equationTerm = '0'
 let canAddDecimal = true
@@ -74,7 +75,7 @@ function evaluate(_equation) {
 			result = leftTerm ** rightTerm
 	}
 	
-	return result.toFixed(2)
+	return parseFloat(result.toFixed(PRECISION))
 }
 
 function makeNumberButton(_DOM_ELEMENT, _text) {
@@ -133,13 +134,14 @@ function makeOperationButton(_DOM_ELEMENT, _text) {
 	_DOM_ELEMENT.addEventListener('click', () => {
 		if (_text === '%') {
 			if (equation.length === 0) {
-				equationTerm = (Number(equationTerm) / 100).toFixed(2);
+				equationTerm = parseFloat((Number(equationTerm) / 100).toFixed(PRECISION));
 			}
 			else {
 				let result = `${evaluate(equation+equationTerm)}`
-				equationTerm = (result/100).toFixed(2);
+				equationTerm = parseFloat((result/100).toFixed(2));
 			}
 
+			equation = ''
 			refreshCalculatorDisplay()
 			return
 		}
