@@ -11,6 +11,9 @@
 
 	--header-bg-color: var(--color-gray);
 	--header-fg-color: var(--color-white);
+
+	--main-bg-color: var(--color-gray);
+	--main-fg-color: var(--color-white);
 }
 
 /* --- */
@@ -35,6 +38,19 @@ body {
 header {
 	background: var(--header-bg-color);
 	color: var(--header-fg-color);
+
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center;
+}
+
+/* --- */
+
+main {
+	background: var(--main-bg-color);
+	color: var(--main-fg-color);
+	flex-grow: 1;
 
 	display: flex;
 	flex-flow: row nowrap;
