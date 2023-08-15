@@ -10,13 +10,19 @@
 	--color-black: #0d0d0d;
 
 	--header-bg-color: var(--color-gray);
-	--header-fg-color: var(--color-white);
-
 	--main-bg-color: var(--color-gray);
-	--main-fg-color: var(--color-white);
+	--calculator-body-bg-color: var(--color-black);
+	--calculator-display-bg-color: var(--color-white);
+
+	--header-fg-color: var(--color-white);
+	--calculator-display-fg-color: var(--color-black);
 }
 
 /* --- */
+
+* {
+	box-sizing: border-box;
+}
 
 html,
 body {
@@ -49,11 +55,28 @@ header {
 
 main {
 	background: var(--main-bg-color);
-	color: var(--main-fg-color);
 	flex-grow: 1;
+	padding: 1rem;
 
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: center;
 	align-items: center;
+}
+
+.calculator-body {
+	background: var(--calculator-body-bg-color);
+	width: 100%;
+	max-width: 500px;
+	padding: 1rem;
+
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 1rem;
+}
+
+.calculator-display {
+	background: var(--calculator-display-bg-color);
+	color: var(--calculator-display-fg-color);
+	flex: 0 0 100px;
 }
