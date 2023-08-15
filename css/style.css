@@ -6,8 +6,10 @@
 	--color-orange: #f5793b;
 	--color-red: #f0504f;
 	--color-white: #f0f1df;
+	--color-pure-white: #ffffff;
 	--color-gray: #2a2d30;
 	--color-black: #0d0d0d;
+	--color-pure-black: #000000;
 
 	--header-bg-color: var(--color-gray);
 	--main-bg-color: var(--color-gray);
@@ -16,6 +18,7 @@
 
 	--header-fg-color: var(--color-white);
 	--calculator-display-fg-color: var(--color-black);
+	--calculator-display-equation-fg-color: var(--color-gray);
 }
 
 /* --- */
@@ -68,6 +71,7 @@ main {
 	background: var(--calculator-body-bg-color);
 	width: 100%;
 	max-width: 500px;
+	border-radius: 10px;
 	padding: 1rem;
 
 	display: flex;
@@ -78,5 +82,49 @@ main {
 .calculator-display {
 	background: var(--calculator-display-bg-color);
 	color: var(--calculator-display-fg-color);
+	border-radius: 10px;
 	flex: 0 0 100px;
+
+	display: flex;
+	flex-flow: column nowrap;
+}
+
+.calculator-display-equation {
+	color: var(--calculator-display-equation-fg-color);
+	flex: 0 0 30%;
+	padding: 0.3rem 0.7rem;
+
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-end;
+	align-content: center;
+}
+.calculator-display-term {
+	flex: 1 1 auto;
+	padding: 0.3rem 0.4rem;
+	font-size: 3rem;
+
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-end;
+	align-items: flex-end;
+}
+
+.calculator-inputs {
+	flex: 1;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 1rem;
+}
+
+/* --- */
+
+.calculator-button {
+	aspect-ratio: 1;
+	border: none;
+	border-radius: 10px;
+}
+
+.calculator-number-button {
+	background: var(--color-pure-white);
 }
