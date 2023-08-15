@@ -54,6 +54,21 @@ function makeDecimalButton(_DOM_ELEMENT, _text) {
 	})
 }
 
+function makeClearButton(_DOM_ELEMENT, _text) {
+	_DOM_ELEMENT.classList.add('calculator-clear-button')
+	_DOM_ELEMENT.addEventListener('click', () => {
+		if (equationTerm[equationTerm.length-1] === '.')
+			canAddDecimal = true
+
+		if (equationTerm.length === 1)
+			equationTerm = '0'
+		else
+			equationTerm = equationTerm.slice(0, -1)
+
+		refreshCalculatorDisplay()
+	})
+}
+
 // fill calculator inputs
 
 CALCULATOR_BUTTON_LAYOUT.forEach( (BUTTON_TEXT) => {
@@ -67,8 +82,12 @@ CALCULATOR_BUTTON_LAYOUT.forEach( (BUTTON_TEXT) => {
 	// make button function
 	if ( !isNaN(Number(BUTTON_TEXT)) )
 		makeNumberButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
+
 	else if (BUTTON_TEXT === '.')
 		makeDecimalButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
+
+	else if (BUTTON_TEXT === 'C')
+		makeClearButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
 
 	// add dom button to calculator inputs
 	DOM_CALCULATOR_INPUTS.appendChild(DOM_CALCULATOR_BUTTON)

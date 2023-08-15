@@ -23,8 +23,11 @@
 	--calculator-number-button-bg-color: var(--color-green);
 	--calculator-number-button-fg-color: var(--color-black);
 
-	--calculator-decimal-button-bg-color: var(--color-yellow);
+	--calculator-decimal-button-bg-color: var(--color-green);
 	--calculator-decimal-button-fg-color: var(--color-black);
+
+	--calculator-clear-button-bg-color: var(--color-blue);
+	--calculator-clear-button-fg-color: var(--color-black);
 }
 
 /* --- */
@@ -139,4 +142,9 @@ main {
 .calculator-decimal-button {
 	background: var(--calculator-decimal-button-bg-color);
 	color: var(--calculator-decimal-button-fg-color);
+}
+
+.calculator-clear-button {
+	background: var(--calculator-clear-button-bg-color);
+	color: var(--calculator-clear-button-fg-color);
 }
