@@ -19,6 +19,7 @@ const CALCULATOR_BUTTONS = {}
 
 let equation = ''
 let equationTerm = '0'
+let canAddDecimal = true
 
 function refreshCalculatorDisplay() {
 	DOM_CALCULATOR_DISPLAY_EQUATION.innerText = equation
@@ -41,6 +42,18 @@ function makeNumberButton(_DOM_ELEMENT, _text) {
 
 }
 
+function makeDecimalButton(_DOM_ELEMENT, _text) {
+	_DOM_ELEMENT.classList.add('calculator-decimal-button')
+	_DOM_ELEMENT.addEventListener('click', () => {
+
+		if (canAddDecimal) {
+			equationTerm += _text
+			canAddDecimal = false
+			refreshCalculatorDisplay()
+		}
+	})
+}
+
 // fill calculator inputs
 
 CALCULATOR_BUTTON_LAYOUT.forEach( (BUTTON_TEXT) => {
@@ -54,6 +67,8 @@ CALCULATOR_BUTTON_LAYOUT.forEach( (BUTTON_TEXT) => {
 	// make button function
 	if ( !isNaN(Number(BUTTON_TEXT)) )
 		makeNumberButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
+	else if (BUTTON_TEXT === '.')
+		makeDecimalButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
 
 	// add dom button to calculator inputs
 	DOM_CALCULATOR_INPUTS.appendChild(DOM_CALCULATOR_BUTTON)

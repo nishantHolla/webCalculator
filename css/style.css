@@ -19,6 +19,12 @@
 	--header-fg-color: var(--color-white);
 	--calculator-display-fg-color: var(--color-black);
 	--calculator-display-equation-fg-color: var(--color-gray);
+
+	--calculator-number-button-bg-color: var(--color-green);
+	--calculator-number-button-fg-color: var(--color-black);
+
+	--calculator-decimal-button-bg-color: var(--color-yellow);
+	--calculator-decimal-button-fg-color: var(--color-black);
 }
 
 /* --- */
@@ -126,5 +132,11 @@ main {
 }
 
 .calculator-number-button {
-	background: var(--color-pure-white);
+	background: var(--calculator-number-button-bg-color);
+	color: var(--calculator-number-button-fg-color);
+}
+
+.calculator-decimal-button {
+	background: var(--calculator-decimal-button-bg-color);
+	color: var(--calculator-decimal-button-fg-color);
 }
