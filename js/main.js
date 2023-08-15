@@ -20,6 +20,7 @@ const CALCULATOR_BUTTONS = {}
 let equation = ''
 let equationTerm = '0'
 let canAddDecimal = true
+const OPERATIONS = ['+', '-', '*', '/', '^']
 
 function refreshCalculatorDisplay() {
 	DOM_CALCULATOR_DISPLAY_EQUATION.innerText = equation
@@ -27,6 +28,54 @@ function refreshCalculatorDisplay() {
 }
 
 // types of calculator buttons
+
+function evaluate(_equation) {
+	let equation = ''
+	for (let i=0; i<_equation.length; i++) {
+		if (_equation[i] !== ' ')
+			equation += _equation[i]
+	}
+
+	let leftTerm = ''
+	let operation = ''
+	let rightTerm = ''
+
+	let foundLeft = false;
+	for (let i=0; i<equation.length; i++) {
+		if (OPERATIONS.includes(equation[i])) {
+			foundLeft = true
+			operation = equation[i]
+			continue
+		}
+
+		if (foundLeft)
+			rightTerm += equation[i]
+		else
+			leftTerm += equation[i]
+	}
+
+	leftTerm = Number(leftTerm)
+	rightTerm = Number(rightTerm)
+	result = 0
+	switch (operation) {
+		case '+':
+			result = leftTerm + rightTerm
+			break
+		case '-':
+			result = leftTerm - rightTerm
+			break
+		case '*':
+			result = leftTerm * rightTerm
+			break
+		case '/':
+			result = leftTerm / rightTerm
+			break
+		case '^':
+			result = leftTerm ** rightTerm
+	}
+	
+	return result.toFixed(2)
+}
 
 function makeNumberButton(_DOM_ELEMENT, _text) {
 	_DOM_ELEMENT.classList.add('calculator-number-button')
@@ -79,6 +128,40 @@ function makeAllClearButton(_DOM_ELEMENT, _text) {
 	})
 }
 
+function makeOperationButton(_DOM_ELEMENT, _text) {
+	_DOM_ELEMENT.classList.add('calculator-operation-button')
+	_DOM_ELEMENT.addEventListener('click', () => {
+		if (_text === '%') {
+			if (equation.length === 0) {
+				equationTerm = (Number(equationTerm) / 100).toFixed(2);
+			}
+			else {
+				let result = `${evaluate(equation+equationTerm)}`
+				equationTerm = (result/100).toFixed(2);
+			}
+
+			refreshCalculatorDisplay()
+			return
+		}
+
+		_text = ' ' + _text
+		canAddDecimal = true
+
+		if (equation.length === 0) {
+			equation = equationTerm + _text
+			equationTerm = '0'
+		}
+
+		else {
+			equation = `${evaluate(equation+equationTerm)}${_text}`
+			equationTerm = '0'
+		}
+			
+		refreshCalculatorDisplay()
+	})
+
+}
+
 // fill calculator inputs
 
 CALCULATOR_BUTTON_LAYOUT.forEach( (BUTTON_TEXT) => {
@@ -101,6 +184,12 @@ CALCULATOR_BUTTON_LAYOUT.forEach( (BUTTON_TEXT) => {
 
 	else if (BUTTON_TEXT === 'AC')
 		makeAllClearButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
+
+	else if (BUTTON_TEXT === '=')
+	{}
+
+	else
+		makeOperationButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
 
 	// add dom button to calculator inputs
 	DOM_CALCULATOR_INPUTS.appendChild(DOM_CALCULATOR_BUTTON)
