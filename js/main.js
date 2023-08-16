@@ -27,6 +27,7 @@ const OPERATIONS = ['+', '-', '*', '/', '^', '%']
 function refreshCalculatorDisplay() {
 	DOM_CALCULATOR_DISPLAY_EQUATION.innerText = equation
 	DOM_CALCULATOR_DISPLAY_TERM.innerText = equationTerm
+	canAddDecimal = !equationTerm.includes('.')
 }
 
 // types of calculator buttons
@@ -107,7 +108,6 @@ function makeDecimalButton(_DOM_ELEMENT, _text) {
 
 		if (canAddDecimal) {
 			equationTerm += _text
-			canAddDecimal = false
 			refreshCalculatorDisplay()
 		}
 	})
@@ -116,8 +116,6 @@ function makeDecimalButton(_DOM_ELEMENT, _text) {
 function makeClearButton(_DOM_ELEMENT, _text) {
 	_DOM_ELEMENT.classList.add('calculator-clear-button', 'grid-col-span-2')
 	_DOM_ELEMENT.addEventListener('click', () => {
-		if (equationTerm[equationTerm.length-1] === '.')
-			canAddDecimal = true
 
 		if (equationTerm.length === 1)
 			equationTerm = '0'
@@ -133,7 +131,6 @@ function makeAllClearButton(_DOM_ELEMENT, _text) {
 	_DOM_ELEMENT.addEventListener('click', () => {
 		equationTerm = '0'
 		equation = ''
-		canAddDecimal = true
 		refreshCalculatorDisplay()
 	})
 }
@@ -146,7 +143,6 @@ function makeEqualsToButton(_DOM_ELEMENT, _text) {
 
 		equationTerm = `${evaluate(equation+equationTerm)}`
 		equation = ''
-		canAddDecimal = true
 		refreshCalculatorDisplay()
 	})
 }
@@ -169,7 +165,6 @@ function makeOperationButton(_DOM_ELEMENT, _text) {
 		}
 
 		_text = ' ' + _text
-		canAddDecimal = true
 
 		if (equation.length === 0) {
 			equation = equationTerm + _text
@@ -229,6 +224,19 @@ function makeInversionButton(_DOM_ELEMENT, _text) {
 	})
 }
 
+function makeOneOverButton(_DOM_ELEMENT, _text) {
+	_DOM_ELEMENT.classList.add('calculator-one-over-button')
+	_DOM_ELEMENT.addEventListener('click', () => {
+
+		if (equation.length !== 0)
+			equationTerm = `${evaluate(equation + equationTerm)}`
+
+		equation = ''
+		equationTerm = `${evaluate('1/' + equationTerm)}`
+		refreshCalculatorDisplay()
+	})
+}
+
 // fill calculator inputs
 
 CALCULATOR_BUTTON_LAYOUT.forEach( (BUTTON_TEXT) => {
@@ -260,6 +268,9 @@ CALCULATOR_BUTTON_LAYOUT.forEach( (BUTTON_TEXT) => {
 
 	else if (BUTTON_TEXT === '+/-')
 		makeInversionButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
+
+	else if (BUTTON_TEXT === '1/x')
+		makeOneOverButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
 
 	else if (BUTTON_TEXT === 'rad')
 		makeAngleButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
