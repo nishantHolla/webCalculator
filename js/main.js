@@ -9,9 +9,9 @@ const DOM_CALCULATOR_INPUTS = document.querySelector('.calculator-inputs')
 // calculator
 
 const CALCULATOR_BUTTON_LAYOUT = [
-	'7', '8', '9', '+', '-',
-	'4', '5', '6', '*', '/',
-	'1', '2', '3', '%', '^',
+	'7', '8', '9', '+', '-', 'sin', 'cos',
+	'4', '5', '6', '*', '/', 'tan', 'rad',
+	'1', '2', '3', '%', '^', '1/x', '+/-',
 	'.', '0', '=', 'C', 'AC'
 ]
 
@@ -21,7 +21,7 @@ const PRECISION = 8
 let equation = ''
 let equationTerm = '0'
 let canAddDecimal = true
-const OPERATIONS = ['+', '-', '*', '/', '^']
+const OPERATIONS = ['+', '-', '*', '/', '^', '%']
 
 function refreshCalculatorDisplay() {
 	DOM_CALCULATOR_DISPLAY_EQUATION.innerText = equation
@@ -42,7 +42,14 @@ function evaluate(_equation) {
 	let rightTerm = ''
 
 	let foundLeft = false;
-	for (let i=0; i<equation.length; i++) {
+	let startIndex = 0
+	let leftIsNegitive = false;
+
+	if (_equation[0] === '-') {
+		startIndex = 1
+		leftIsNegitive = true
+	}
+	for (let i=startIndex; i<equation.length; i++) {
 		if (OPERATIONS.includes(equation[i])) {
 			foundLeft = true
 			operation = equation[i]
@@ -56,6 +63,7 @@ function evaluate(_equation) {
 	}
 
 	leftTerm = Number(leftTerm)
+	leftTerm = leftIsNegitive ? leftTerm * (-1) : leftTerm;
 	rightTerm = Number(rightTerm)
 	result = 0
 	switch (operation) {
@@ -105,7 +113,7 @@ function makeDecimalButton(_DOM_ELEMENT, _text) {
 }
 
 function makeClearButton(_DOM_ELEMENT, _text) {
-	_DOM_ELEMENT.classList.add('calculator-clear-button')
+	_DOM_ELEMENT.classList.add('calculator-clear-button', 'grid-col-span-2')
 	_DOM_ELEMENT.addEventListener('click', () => {
 		if (equationTerm[equationTerm.length-1] === '.')
 			canAddDecimal = true
@@ -120,7 +128,7 @@ function makeClearButton(_DOM_ELEMENT, _text) {
 }
 
 function makeAllClearButton(_DOM_ELEMENT, _text) {
-	_DOM_ELEMENT.classList.add('calculator-all-clear-button')
+	_DOM_ELEMENT.classList.add('calculator-all-clear-button', 'grid-col-span-2')
 	_DOM_ELEMENT.addEventListener('click', () => {
 		equationTerm = '0'
 		equation = ''
@@ -151,7 +159,7 @@ function makeOperationButton(_DOM_ELEMENT, _text) {
 			}
 			else {
 				let result = `${evaluate(equation+equationTerm)}`
-				equationTerm = parseFloat((result/100).toFixed(2));
+				equationTerm = parseFloat((result/100).toFixed(PRECISION));
 			}
 
 			equation = ''
@@ -175,6 +183,31 @@ function makeOperationButton(_DOM_ELEMENT, _text) {
 		refreshCalculatorDisplay()
 	})
 
+}
+
+function makeTrigButton(_DOM_ELEMENT, _text) {
+	_DOM_ELEMENT.classList.add('calculator-trig-button')
+}
+
+function makeInversionButton(_DOM_ELEMENT, _text) {
+	_DOM_ELEMENT.classList.add('calculator-inversion-button')
+	_DOM_ELEMENT.addEventListener('click', () => {
+		if (equation.length !== 0) {
+			equation += equationTerm
+			equationTerm = `${evaluate(equation) * (-1)}`
+			equation = ''
+			refreshCalculatorDisplay()
+			return
+		}
+
+		else if (equationTerm === '0') {
+			return
+		}
+		
+		equationTerm = `${Number(equationTerm) * (-1)}`
+		refreshCalculatorDisplay()
+
+	})
 }
 
 // fill calculator inputs
@@ -203,8 +236,14 @@ CALCULATOR_BUTTON_LAYOUT.forEach( (BUTTON_TEXT) => {
 	else if (BUTTON_TEXT === '=')
 		makeEqualsToButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
 
-	else
+	else if (OPERATIONS.includes(BUTTON_TEXT))
 		makeOperationButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
+
+	else if (BUTTON_TEXT !== '+/-')
+		makeTrigButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
+
+	else
+		makeInversionButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
 
 	// add dom button to calculator inputs
 	DOM_CALCULATOR_INPUTS.appendChild(DOM_CALCULATOR_BUTTON)
