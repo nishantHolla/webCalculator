@@ -21,6 +21,7 @@ const PRECISION = 8
 let equation = ''
 let equationTerm = '0'
 let canAddDecimal = true
+let isAngleUnitRad = true
 const OPERATIONS = ['+', '-', '*', '/', '^', '%']
 
 function refreshCalculatorDisplay() {
@@ -189,6 +190,24 @@ function makeTrigButton(_DOM_ELEMENT, _text) {
 	_DOM_ELEMENT.classList.add('calculator-trig-button')
 }
 
+function makeAngleButton(_DOM_ELEMENT, _text) {
+	_DOM_ELEMENT.classList.add('calculator-angle-button', 'calculator-angle-rad-button')
+	_DOM_ELEMENT.addEventListener('click', () => {
+		isAngleUnitRad = !isAngleUnitRad
+
+		if (isAngleUnitRad) {
+			_DOM_ELEMENT.classList.remove('calculator-angle-degree-button')
+			_DOM_ELEMENT.classList.add('calculator-angle-rad-button')
+			_DOM_ELEMENT.innerText = 'rad'
+		}
+		else {
+			_DOM_ELEMENT.classList.add('calculator-angle-degree-button')
+			_DOM_ELEMENT.classList.remove('calculator-angle-rad-button')
+			_DOM_ELEMENT.innerText = 'deg'
+		}
+	})
+}
+
 function makeInversionButton(_DOM_ELEMENT, _text) {
 	_DOM_ELEMENT.classList.add('calculator-inversion-button')
 	_DOM_ELEMENT.addEventListener('click', () => {
@@ -239,11 +258,14 @@ CALCULATOR_BUTTON_LAYOUT.forEach( (BUTTON_TEXT) => {
 	else if (OPERATIONS.includes(BUTTON_TEXT))
 		makeOperationButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
 
-	else if (BUTTON_TEXT !== '+/-')
-		makeTrigButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
+	else if (BUTTON_TEXT === '+/-')
+		makeInversionButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
+
+	else if (BUTTON_TEXT === 'rad')
+		makeAngleButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
 
 	else
-		makeInversionButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
+		makeTrigButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
 
 	// add dom button to calculator inputs
 	DOM_CALCULATOR_INPUTS.appendChild(DOM_CALCULATOR_BUTTON)
