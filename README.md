@@ -2,9 +2,3 @@
 
 Run a simple calculator online.<br>
 Now the calculator is live [here](https://nishantholla.github.io/webCalculator/)!
-
-## Screenshots
-
-<center>
-<img src="./project/screenshot.png" alt="screenshot">
-</center>
