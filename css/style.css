@@ -20,6 +20,7 @@
 
 	--fs-display-term: 3rem;
 	--fs-disply-equation: 1.2rem;
+	--fs-button: clamp(0.8rem, 5vw, 2rem);
 
 	--header-bg-color: var(--color-black);
 	--main-bg-color: var(--color-gray);
@@ -161,6 +162,7 @@ main {
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
 	gap: 1rem;
+	justify-items: stretch;
 }
 
 .grid-col-span-2 {
@@ -170,12 +172,16 @@ main {
 /* --- */
 
 .calculator-button {
-	aspect-ratio: 1;
 	border: none;
+	padding: 0.4rem 0.1rem;
 	border-radius: 10px;
-	font-size: clamp(1rem ,2vw, 2rem);
+	font-size: var(--fs-button);
 	font-weight: bold;
 	font-family: var(--fsty-calculator-button);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .calculator-number-button {
@@ -208,27 +214,31 @@ main {
 .calculator-trig-button {
 	background: var(--calculator-trig-button-bg-color);
 	color: var(--calculator-trig-button-fg-color);
+	font-size: clamp(0.8rem, 2vw, 1.3rem);
 }
 
 .calculator-one-over-button {
 	background: var(--calculator-one-over-button-bg-color);
 	color: var(--calculator-one-over-button-fg-color);
+	font-size: clamp(0.8rem, 2vw, 1.3rem);
 }
 
 .calculator-inversion-button {
 	background: var(--calculator-inversion-button-bg-color);
 	color: var(--calculator-inversion-button-fg-color);
+	font-size: clamp(0.8rem, 2vw, 1.3rem);
 }
 
 .calculator-angle-degree-button {
 	background: var(--calculator-angle-degree-button-bg-color);
 	color: var(--calculator-degree-button-fg-color);
-	/* font-size: 1.8rem; */
+	font-size: clamp(0.8rem, 2vw, 1.3rem);
 }
 
 .calculator-angle-rad-button {
 	background: var(--calculator-angle-rad-button-bg-color);
 	color: var(--calculator-rad-button-fg-color);
+	font-size: clamp(0.8rem, 2vw, 1.3rem);
 }
 
 /* --- */
