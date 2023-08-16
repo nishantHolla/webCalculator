@@ -13,6 +13,8 @@
 	--color-shadow-black: #00000077;
 
 	--fsty-mono: monospace;
+	--fs-display-term: 3rem;
+	--fs-disply-equation: 1.2rem;
 
 	--header-bg-color: var(--color-black);
 	--main-bg-color: var(--color-gray);
@@ -40,6 +42,9 @@
 
 	--calculator-trig-button-bg-color: var(--color-yellow);
 	--calculator-trig-button-fg-color: var(--color-black);
+
+	--calculator-one-over-button-bg-color: var(--color-yellow);
+	--calculator-one-over-button-fg-color: var(--color-black);
 
 	--calculator-inversion-button-bg-color: var(--color-yellow);
 	--calculator-inversion-button-fg-color: var(--color-black);
@@ -131,18 +136,17 @@ main {
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: flex-end;
-	align-content: center;
-	font-size: 1.3rem;
+	align-items: center;
+	font-size: var(--fs-disply-equation);
 }
 .calculator-display-term {
 	flex: 1 1 auto;
 	padding: 0.3rem 0.4rem;
-	font-size: 3rem;
+	font-size: var(--fs-display-term);
 
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: flex-end;
-	align-items: flex-end;
 }
 
 .calculator-inputs {
@@ -196,6 +200,11 @@ main {
 .calculator-trig-button {
 	background: var(--calculator-trig-button-bg-color);
 	color: var(--calculator-trig-button-fg-color);
+}
+
+.calculator-one-over-button {
+	background: var(--calculator-one-over-button-bg-color);
+	color: var(--calculator-one-over-button-fg-color);
 }
 
 .calculator-inversion-button {
