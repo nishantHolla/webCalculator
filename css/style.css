@@ -12,6 +12,8 @@
 	--color-pure-black: #000000;
 	--color-shadow-black: #00000077;
 
+	--fsty-mono: monospace;
+
 	--header-bg-color: var(--color-black);
 	--main-bg-color: var(--color-gray);
 	--calculator-body-bg-color: var(--color-black);
@@ -36,6 +38,18 @@
 	--calculator-equals-to-button-bg-color: var(--color-orange);
 	--calculator-equals-to-button-fg-color: var(--color-black);
 
+	--calculator-trig-button-bg-color: var(--color-yellow);
+	--calculator-trig-button-fg-color: var(--color-black);
+
+	--calculator-inversion-button-bg-color: var(--color-yellow);
+	--calculator-inversion-button-fg-color: var(--color-black);
+
+	--calculator-angle-degree-button-bg-color: var(--color-orange);
+	--calculator-angle-degree-button-fg-color: var(--color-black);
+
+	--calculator-angle-rad-button-bg-color: var(--color-yellow);
+	--calculator-angle-rad-button-fg-color: var(--color-black);
+
 	--footer-bg-color: var(--color-gray);
 	--footer-fg-color: var(--color-white);
 }
@@ -55,7 +69,7 @@ body {
 }
 
 body {
-	font-family: sans-serif;
+	font-family: var(--fsty-mono);
 
 	display: flex;
 	flex-flow: column nowrap;
@@ -92,7 +106,7 @@ main {
 	max-width: 500px;
 	border-radius: 10px;
 	padding: 1rem;
-	box-shadow: 20px 20px 5px 5px var(--color-shadow-black);
+	/* box-shadow: 20px 20px 5px 5px var(--color-shadow-black); */
 
 	display: flex;
 	flex-flow: column nowrap;
@@ -111,13 +125,14 @@ main {
 
 .calculator-display-equation {
 	color: var(--calculator-display-equation-fg-color);
-	flex: 0 0 30%;
+	flex: 0 0 40%;
 	padding: 0.3rem 0.7rem;
 
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: flex-end;
 	align-content: center;
+	font-size: 1.3rem;
 }
 .calculator-display-term {
 	flex: 1 1 auto;
@@ -133,8 +148,12 @@ main {
 .calculator-inputs {
 	flex: 1;
 	display: grid;
-	grid-template-columns: repeat(5, 1fr);
+	grid-template-columns: repeat(7, 1fr);
 	gap: 1rem;
+}
+
+.grid-col-span-2 {
+	grid-column: span 2;
 }
 
 /* --- */
@@ -161,6 +180,7 @@ main {
 .calculator-all-clear-button {
 	background: var(--calculator-clear-button-bg-color);
 	color: var(--calculator-clear-button-fg-color);
+	aspect-ratio: auto;
 }
 
 .calculator-operation-button {
@@ -171,6 +191,27 @@ main {
 .calculator-equals-to-button {
 	background: var(--calculator-equals-to-button-bg-color);
 	color: var(--calculator-equals-to-button-fg-color);
+}
+
+.calculator-trig-button {
+	background: var(--calculator-trig-button-bg-color);
+	color: var(--calculator-trig-button-fg-color);
+}
+
+.calculator-inversion-button {
+	background: var(--calculator-inversion-button-bg-color);
+	color: var(--calculator-inversion-button-fg-color);
+}
+
+.calculator-angle-degree-button {
+	background: var(--calculator-angle-degree-button-bg-color);
+	color: var(--calculator-degree-button-fg-color);
+	font-size: 1.8rem;
+}
+
+.calculator-angle-rad-button {
+	background: var(--calculator-angle-rad-button-bg-color);
+	color: var(--calculator-rad-button-fg-color);
 }
 
 /* --- */
