@@ -30,6 +30,10 @@ function refreshCalculatorDisplay() {
 	canAddDecimal = !equationTerm.includes('.')
 }
 
+function formatResult(_result) {
+	return `${parseFloat(Number(_result).toFixed(PRECISION))}`
+}
+
 // types of calculator buttons
 
 function evaluate(_equation) {
@@ -85,7 +89,7 @@ function evaluate(_equation) {
 			result = leftTerm ** rightTerm
 	}
 	
-	return parseFloat(result.toFixed(PRECISION))
+	return formatResult(result)
 }
 
 function makeNumberButton(_DOM_ELEMENT, _text) {
@@ -152,11 +156,11 @@ function makeOperationButton(_DOM_ELEMENT, _text) {
 	_DOM_ELEMENT.addEventListener('click', () => {
 		if (_text === '%') {
 			if (equation.length === 0) {
-				equationTerm = parseFloat((Number(equationTerm) / 100).toFixed(PRECISION));
+				equationTerm = formatResult(Number(equationTerm) / 100)
 			}
 			else {
 				let result = `${evaluate(equation+equationTerm)}`
-				equationTerm = parseFloat((result/100).toFixed(PRECISION));
+				equationTerm = formatResult(result/100)
 			}
 
 			equation = ''
@@ -183,6 +187,30 @@ function makeOperationButton(_DOM_ELEMENT, _text) {
 
 function makeTrigButton(_DOM_ELEMENT, _text) {
 	_DOM_ELEMENT.classList.add('calculator-trig-button')
+	let trigFunction = undefined
+	switch (_text) {
+		case 'tan':
+			trigFunction = Math.tan
+			break
+		case 'sin':
+			trigFunction = Math.sin
+			break
+		case 'cos':
+			trigFunction = Math.cos
+			break
+	}
+	_DOM_ELEMENT.addEventListener('click', () => {
+		if (equation !== '')
+			equationTerm = `${evaluate(equation + equationTerm)}`
+
+		equation = ''
+		if (!isAngleUnitRad)
+			equationTerm = `${Math.PI * Number(equationTerm)/180.0}`
+
+		equationTerm = `${trigFunction(Number(equationTerm))}`
+		equationTerm = formatResult(equationTerm)
+		refreshCalculatorDisplay()
+	})
 }
 
 function makeAngleButton(_DOM_ELEMENT, _text) {
