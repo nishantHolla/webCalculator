@@ -12,7 +12,7 @@ const CALCULATOR_BUTTON_LAYOUT = [
 	'7', '8', '9', '+', '-', 'sin', 'cos',
 	'4', '5', '6', '*', '/', 'tan', 'rad',
 	'1', '2', '3', '%', '^', '1/x', '+/-',
-	'.', '0', '=', 'C', 'AC'
+	'.', '0', '𝝿', '=', 'C', 'AC'
 ]
 
 const CALCULATOR_BUTTONS = {}
@@ -22,7 +22,7 @@ let equation = ''
 let equationTerm = '0'
 let canAddDecimal = true
 let isAngleUnitRad = true
-const OPERATIONS = ['+', '-', '*', '/', '^', '%']
+const OPERATIONS = ['+', '-', '*', '/', '^', '%', '√']
 
 function refreshCalculatorDisplay() {
 	DOM_CALCULATOR_DISPLAY_EQUATION.innerText = equation
@@ -34,7 +34,21 @@ function formatResult(_result) {
 	return `${parseFloat(Number(_result).toFixed(PRECISION))}`
 }
 
-// types of calculator buttons
+// evaluation
+
+function evaluatePercentage() {
+	let result = 0
+	if (equation.length === 0) {
+		result = Number(equationTerm) / 100
+	}
+	else {
+		result = `${evaluate(equation+equationTerm)}`
+		result = Number(result)/100
+	}
+
+	return formatResult(result)
+
+}
 
 function evaluate(_equation) {
 	let equation = ''
@@ -92,6 +106,8 @@ function evaluate(_equation) {
 	return formatResult(result)
 }
 
+// types of calculator buttons
+
 function makeNumberButton(_DOM_ELEMENT, _text) {
 	_DOM_ELEMENT.classList.add('calculator-number-button')
 	_DOM_ELEMENT.addEventListener('click', () => {
@@ -106,6 +122,17 @@ function makeNumberButton(_DOM_ELEMENT, _text) {
 
 }
 
+function makePiButton(_DOM_ELEMENT, _text) {
+	_DOM_ELEMENT.classList.add('calculator-pi-button')
+	_DOM_ELEMENT.addEventListener('click', () => {
+		if (equationTerm !== '0')
+			return
+
+		equationTerm = formatResult(Math.PI)
+		refreshCalculatorDisplay()
+	})
+}
+
 function makeDecimalButton(_DOM_ELEMENT, _text) {
 	_DOM_ELEMENT.classList.add('calculator-decimal-button')
 	_DOM_ELEMENT.addEventListener('click', () => {
@@ -118,7 +145,7 @@ function makeDecimalButton(_DOM_ELEMENT, _text) {
 }
 
 function makeClearButton(_DOM_ELEMENT, _text) {
-	_DOM_ELEMENT.classList.add('calculator-clear-button', 'grid-col-span-2')
+	_DOM_ELEMENT.classList.add('calculator-clear-button')
 	_DOM_ELEMENT.addEventListener('click', () => {
 
 		if (equationTerm.length === 1)
@@ -131,7 +158,7 @@ function makeClearButton(_DOM_ELEMENT, _text) {
 }
 
 function makeAllClearButton(_DOM_ELEMENT, _text) {
-	_DOM_ELEMENT.classList.add('calculator-all-clear-button', 'grid-col-span-2')
+	_DOM_ELEMENT.classList.add('calculator-all-clear-button')
 	_DOM_ELEMENT.addEventListener('click', () => {
 		equationTerm = '0'
 		equation = ''
@@ -140,7 +167,7 @@ function makeAllClearButton(_DOM_ELEMENT, _text) {
 }
 
 function makeEqualsToButton(_DOM_ELEMENT, _text) {
-	_DOM_ELEMENT.classList.add('calculator-equals-to-button')
+	_DOM_ELEMENT.classList.add('calculator-equals-to-button', 'grid-col-span-2')
 	_DOM_ELEMENT.addEventListener('click', () => {
 		if (equation.length === 0)
 			return
@@ -153,33 +180,34 @@ function makeEqualsToButton(_DOM_ELEMENT, _text) {
 
 function makeOperationButton(_DOM_ELEMENT, _text) {
 	_DOM_ELEMENT.classList.add('calculator-operation-button')
-	_DOM_ELEMENT.addEventListener('click', () => {
-		if (_text === '%') {
-			if (equation.length === 0) {
-				equationTerm = formatResult(Number(equationTerm) / 100)
-			}
-			else {
-				let result = `${evaluate(equation+equationTerm)}`
-				equationTerm = formatResult(result/100)
-			}
 
+	let eventFunction = undefined
+	if (_text === '%') {
+		eventFunction = function() {
+			equationTerm = evaluatePercentage()
 			equation = ''
-			refreshCalculatorDisplay()
-			return
 		}
+	}
 
-		_text = ' ' + _text
+	else {
+		eventFunction = function() {
+			_text = ' ' + _text
 
-		if (equation.length === 0) {
-			equation = equationTerm + _text
-			equationTerm = '0'
+			if (equation.length === 0) {
+				equation = equationTerm + _text
+				equationTerm = '0'
+			}
+
+			else {
+				equation = `${evaluate(equation+equationTerm)}${_text}`
+				equationTerm = '0'
+			}
+
 		}
+	}
 
-		else {
-			equation = `${evaluate(equation+equationTerm)}${_text}`
-			equationTerm = '0'
-		}
-			
+	_DOM_ELEMENT.addEventListener('click', () => {
+		eventFunction()
 		refreshCalculatorDisplay()
 	})
 
@@ -276,8 +304,11 @@ CALCULATOR_BUTTON_LAYOUT.forEach( (BUTTON_TEXT) => {
 	DOM_CALCULATOR_BUTTON.innerText = BUTTON_TEXT
 
 	// make button function
-	if ( !isNaN(Number(BUTTON_TEXT)) )
+	if ( !isNaN(Number(BUTTON_TEXT)))
 		makeNumberButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
+
+	else if (BUTTON_TEXT === '𝝿')
+		makePiButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)
 
 	else if (BUTTON_TEXT === '.')
 		makeDecimalButton(DOM_CALCULATOR_BUTTON, BUTTON_TEXT)

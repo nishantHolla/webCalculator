@@ -184,7 +184,8 @@ main {
 	align-items: center;
 }
 
-.calculator-number-button {
+.calculator-number-button,
+.calculator-pi-button {
 	background: var(--calculator-number-button-bg-color);
 	color: var(--calculator-number-button-fg-color);
 }
