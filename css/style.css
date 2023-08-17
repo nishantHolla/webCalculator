@@ -81,6 +81,7 @@ body {
 
 body {
 	font-family: var(--fsty-body);
+	background: var(--main-bg-color);
 
 	display: flex;
 	flex-flow: column nowrap;
