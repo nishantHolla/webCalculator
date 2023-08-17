@@ -288,7 +288,7 @@ function makeOneOverButton(_DOM_ELEMENT, _text) {
 			equationTerm = `${evaluate(equation + equationTerm)}`
 
 		equation = ''
-		equationTerm = `${evaluate('1/' + equationTerm)}`
+		equationTerm = `${1/Number(equationTerm)}`
 		refreshCalculatorDisplay()
 	})
 }
