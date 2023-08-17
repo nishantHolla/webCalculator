@@ -43,8 +43,8 @@
 	--calculator-operation-button-bg-color: var(--color-red);
 	--calculator-operation-button-fg-color: var(--color-black);
 
-	--calculator-equals-to-button-bg-color: var(--color-orange);
-	--calculator-equals-to-button-fg-color: var(--color-black);
+	--calculator-equals-to-button-bg-color: var(--calculator-operation-button-bg-color);
+	--calculator-equals-to-button-fg-color: var(--calculator-operation-button-fg-color);
 
 	--calculator-trig-button-bg-color: var(--color-yellow);
 	--calculator-trig-button-fg-color: var(--color-black);
