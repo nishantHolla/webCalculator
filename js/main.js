@@ -148,7 +148,7 @@ function makeClearButton(_DOM_ELEMENT, _text) {
 	_DOM_ELEMENT.classList.add('calculator-clear-button')
 	_DOM_ELEMENT.addEventListener('click', () => {
 
-		if (equationTerm.length === 1)
+		if (equationTerm.length === 1 || equationTerm === 'Infinity')
 			equationTerm = '0'
 		else
 			equationTerm = equationTerm.slice(0, -1)
