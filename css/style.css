@@ -14,12 +14,12 @@
 
 	--fsty-sans-serif: sans-serif;
 	--fsty-mono: monospace;
-	--fsty-calculator-button: var(--fsty-mono);
-	--fsty-calculator-display: var(--fsty-mono);
+	--fsty-calculator-button: var(--fsty-sans-serif);
+	--fsty-calculator-display: var(--fsty-sans-serif);
 	--fsty-body: var(--fsty-sans-serif);
 
-	--fs-display-term: 3rem;
-	--fs-disply-equation: 1.2rem;
+	--fs-display-term: clamp(1rem, 10vw, 3rem);
+	--fs-disply-equation: clamp(0.8rem, 5vw, 2rem);
 	--fs-button: clamp(0.8rem, 5vw, 2rem);
 
 	--header-bg-color: var(--color-black);
@@ -146,15 +146,18 @@ main {
 	align-items: center;
 	font-size: var(--fs-disply-equation);
 }
+
 .calculator-display-term {
 	flex: 1 1 auto;
 	padding: 0.3rem 0.4rem;
 	font-size: var(--fs-display-term);
 	font-weight: bold;
 
-	display: flex;
+	display: inline-flex;
 	flex-flow: row nowrap;
 	justify-content: flex-end;
+	align-items: flex-end;
+	line-height: 0.8;
 }
 
 .calculator-inputs {
