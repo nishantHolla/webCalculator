@@ -1,5 +1,6 @@
 
 @import url("./reset.css");
+@import url("./fonts.css");
 
 :root {
 	--color-blue: #846ff7;
@@ -16,9 +17,10 @@
 
 	--fsty-sans-serif: sans-serif;
 	--fsty-mono: monospace;
-	--fsty-calculator-button: var(--fsty-sans-serif);
-	--fsty-calculator-display: var(--fsty-sans-serif);
-	--fsty-body: var(--fsty-sans-serif);
+
+	--fsty-calculator-button: noto-sans, var(--fsty-sans-serif);
+	--fsty-calculator-display: noto-sans, var(--fsty-sans-serif);
+	--fsty-body: noto-sans, var(--fsty-sans-serif);
 
 	--fs-header: clamp(2rem, 5vw, 3rem);
 	--fs-display-term: clamp(1rem, 10vw, 3rem);
