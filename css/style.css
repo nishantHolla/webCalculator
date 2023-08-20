@@ -8,7 +8,7 @@
 	--color-yellow: #f7f36f;
 	--color-orange: #f5793b;
 	--color-red: #f0504f;
-	--color-white: #f0f1df;
+	--color-white: #fdfdfd;
 	--color-pure-white: #ffffff;
 	--color-gray: #2a2d30;
 	--color-black: #0d0d0d;
@@ -27,12 +27,12 @@
 	--fs-disply-equation: clamp(0.8rem, 5vw, 2rem);
 	--fs-button: clamp(0.8rem, 5vw, 2rem);
 
-	--header-bg-color: var(--color-black);
-	--main-bg-color: var(--color-gray);
-	--calculator-body-bg-color: var(--color-black);
+	--main-bg-color: linear-gradient(90deg, var(--color-blue), var(--color-red));
+	--header-bg-color: var(--main-bg-color);
+	--calculator-body-bg-color: var(--color-gray);
 	--calculator-display-bg-color: var(--color-white);
 
-	--header-fg-color: var(--color-white);
+	--header-fg-color: var(--color-black);
 	--calculator-display-fg-color: var(--color-black);
 	--calculator-display-equation-fg-color: var(--color-gray);
 
@@ -66,8 +66,8 @@
 	--calculator-angle-rad-button-bg-color: var(--color-yellow);
 	--calculator-angle-rad-button-fg-color: var(--color-black);
 
-	--footer-bg-color: var(--color-gray);
-	--footer-fg-color: var(--color-white);
+	--footer-bg-color: var(--main-bg-color);
+	--footer-fg-color: var(--color-black);
 }
 
 /* --- */
