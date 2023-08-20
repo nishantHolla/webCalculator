@@ -25,6 +25,9 @@ let isAngleUnitRad = true
 const OPERATIONS = ['+', '-', '*', '/', '^', '%', '√']
 
 function refreshCalculatorDisplay() {
+	if (Number(equationTerm) <= 1e-7)
+		equationTerm = '0'
+
 	DOM_CALCULATOR_DISPLAY_EQUATION.innerText = equation
 	DOM_CALCULATOR_DISPLAY_TERM.innerText = equationTerm
 	canAddDecimal = !equationTerm.includes('.')
