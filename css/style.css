@@ -39,7 +39,8 @@
 
 	/* background colors of containers */
 
-	--body-bg-color: linear-gradient(90deg, var(--color-blue), var(--color-red));
+	--body-bg-color-horiztonal: linear-gradient(90deg, var(--color-blue), var(--color-red));
+	--body-bg-color-vertical: linear-gradient(180deg, var(--color-blue), var(--color-red));
 	--main-bg-color: inherit;
 	--header-bg-color: inherit;
 	--calculator-body-bg-color: var(--color-gray);
@@ -100,11 +101,17 @@ body {
 
 body {
 	font-family: var(--fsty-body);
-	background: var(--body-bg-color);
+	background: var(--body-bg-color-horiztonal);
 	color: var(--body-fg-color);
 
 	display: flex;
 	flex-flow: column nowrap;
+}
+
+@media screen and (max-width: 600px) {
+	body {
+		background: var(--body-bg-color-vertical);
+	}
 }
 
 /* --- */
