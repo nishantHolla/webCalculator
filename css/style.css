@@ -25,6 +25,7 @@
 
 	/* colors */
 
+	--color-light-blue: #c3ddee;
 	--color-blue: #846ff7;
 	--color-green: #70e0bb;
 	--color-yellow: #f7f36f;
@@ -39,8 +40,7 @@
 
 	/* background colors of containers */
 
-	--body-bg-color-horiztonal: linear-gradient(90deg, var(--color-blue), var(--color-red));
-	--body-bg-color-vertical: linear-gradient(180deg, var(--color-blue), var(--color-red));
+	--body-bg-color: var(--color-light-blue);
 	--main-bg-color: inherit;
 	--header-bg-color: inherit;
 	--calculator-body-bg-color: var(--color-gray);
@@ -101,17 +101,11 @@ body {
 
 body {
 	font-family: var(--fsty-body);
-	background: var(--body-bg-color-horiztonal);
+	background: var(--body-bg-color);
 	color: var(--body-fg-color);
 
 	display: flex;
 	flex-flow: column nowrap;
-}
-
-@media screen and (max-width: 600px) {
-	body {
-		background: var(--body-bg-color-vertical);
-	}
 }
 
 /* --- */
