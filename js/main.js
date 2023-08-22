@@ -1,10 +1,15 @@
 
 // DOM elements
 
+const DOM_HEADING = document.querySelector('header h1')
 const DOM_CALCULATOR_BODY = document.querySelector('.calculator-body')
 const DOM_CALCULATOR_DISPLAY_EQUATION = document.querySelector('.calculator-display-equation')
 const DOM_CALCULATOR_DISPLAY_TERM = document.querySelector('.calculator-display-term')
 const DOM_CALCULATOR_INPUTS = document.querySelector('.calculator-inputs')
+
+// colors
+
+const COLORS = ["red", "green", "blue", "yellow", "orange", "light-blue"]
 
 // calculator
 
@@ -64,9 +69,9 @@ function evaluate(_equation) {
 	let operation = ''
 	let rightTerm = ''
 
-	let foundLeft = false;
+	let foundLeft = false
 	let startIndex = 0
-	let leftIsNegitive = false;
+	let leftIsNegitive = false
 
 	if (_equation[0] === '-') {
 		startIndex = 1
@@ -86,7 +91,7 @@ function evaluate(_equation) {
 	}
 
 	leftTerm = Number(leftTerm)
-	leftTerm = leftIsNegitive ? leftTerm * (-1) : leftTerm;
+	leftTerm = leftIsNegitive ? leftTerm * (-1) : leftTerm
 	rightTerm = Number(rightTerm)
 	result = 0
 	switch (operation) {
@@ -348,3 +353,12 @@ CALCULATOR_BUTTON_LAYOUT.forEach( (BUTTON_TEXT) => {
 
 // fill calculator display
 refreshCalculatorDisplay()
+
+// set calculator body color
+{
+	const SELECTION = COLORS[Math.floor(Math.random()*COLORS.length)]
+	const COLOR = 'var(--color-alpha-' + SELECTION + ')'
+	DOM_CALCULATOR_BODY.style.background = 'linear-gradient(to bottom, var(--color-alpha-white), ' + COLOR + ')'
+	DOM_CALCULATOR_BODY.style.boxShadow = '0 0 100px 20px ' + COLOR
+	DOM_HEADING.style.color = COLOR
+}

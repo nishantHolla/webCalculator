@@ -26,28 +26,42 @@
 	/* colors */
 
 	--color-light-blue: #c3ddee;
+	--color-alpha-light-blue: #c3ddeeaa;
+
 	--color-blue: #846ff7;
+	--color-alpha-blue: #846ff7aa;
+
 	--color-green: #70e0bb;
+	--color-alpha-green: #70e0bbaa;
+
 	--color-yellow: #f7f36f;
+	--color-alpha-yellow: #f7f36faa;
+
 	--color-orange: #f5793b;
+	--color-alpha-orange: #f5793baa;
+
 	--color-red: #f0504f;
+	--color-alpha-red: #f0504faa;
+
 	--color-white: #fdfdfd;
+	--color-alpha-white: #fdfdfdaa;
 	--color-pure-white: #ffffff;
+
 	--color-gray: #2a2d30;
 	--color-black: #0d0d0d;
 	--color-pure-black: #000000;
-	--color-shadow-black: #00000077;
+	--color-alpha-black: #00000077;
 
 	/* background colors of containers */
 
-	--body-bg-color: var(--color-light-blue);
+	--body-bg-color: var(--color-black);
 	--main-bg-color: inherit;
 	--header-bg-color: inherit;
-	--calculator-body-bg-color: var(--color-gray);
-	--calculator-display-bg-color: var(--color-white);
+	--calculator-body-bg-color: linear-gradient( to bottom, var(--color-alpha-white), var(--color-alpha-orange) );
+	--calculator-display-bg-color: none;
 	--footer-bg-color: inherit;
 
-	--body-fg-color: var(--color-black);
+	--body-fg-color: var(--color-white);
 	--header-fg-color: inherit;
 	--calculator-display-fg-color: var(--color-black);
 	--calculator-display-equation-fg-color: var(--color-gray);
@@ -58,8 +72,8 @@
 	--calculator-number-button-bg-color: var(--color-green);
 	--calculator-number-button-fg-color: var(--color-black);
 
-	--calculator-decimal-button-bg-color: var(--color-green);
-	--calculator-decimal-button-fg-color: var(--color-black);
+	--calculator-decimal-button-bg-color: var(--calculator-number-button-bg-color);
+	--calculator-decimal-button-fg-color: var(--calculator-number-button-fg-color);
 
 	--calculator-clear-button-bg-color: var(--color-blue);
 	--calculator-clear-button-fg-color: var(--color-black);
@@ -73,11 +87,11 @@
 	--calculator-trig-button-bg-color: var(--color-yellow);
 	--calculator-trig-button-fg-color: var(--color-black);
 
-	--calculator-one-over-button-bg-color: var(--color-yellow);
-	--calculator-one-over-button-fg-color: var(--color-black);
+	--calculator-one-over-button-bg-color: var(--calculator-trig-button-bg-color);
+	--calculator-one-over-button-fg-color: var(--calculator-trig-button-fg-color);
 
-	--calculator-inversion-button-bg-color: var(--color-yellow);
-	--calculator-inversion-button-fg-color: var(--color-black);
+	--calculator-inversion-button-bg-color: var(--calculator-trig-button-bg-color);
+	--calculator-inversion-button-fg-color: var(--calculator-trig-button-fg-color);
 
 	--calculator-angle-degree-button-bg-color: var(--color-orange);
 	--calculator-angle-degree-button-fg-color: var(--color-black);
@@ -143,8 +157,9 @@ main {
 	background: var(--calculator-body-bg-color);
 	width: 100%;
 	max-width: 500px;
-	border-radius: 10px;
+	border-radius: 20px;
 	padding: 1rem;
+	backdrop-filter: blur(2rem);
 	/* box-shadow: 20px 20px 5px 5px var(--color-shadow-black); */
 
 	display: flex;
@@ -156,7 +171,7 @@ main {
 	background: var(--calculator-display-bg-color);
 	color: var(--calculator-display-fg-color);
 	font-family: var(--fsty-calculator-display);
-	border-radius: 10px;
+	border-radius: 20px;
 	flex: 0 0 100px;
 
 	display: flex;
@@ -205,7 +220,7 @@ main {
 .calculator-button {
 	border: none;
 	padding: 0.4rem 0.1rem;
-	border-radius: 5px;
+	border-radius: 20px;
 	font-size: var(--fs-button);
 	font-weight: bold;
 	font-family: var(--fsty-calculator-button);
@@ -266,13 +281,13 @@ main {
 
 .calculator-angle-degree-button {
 	background: var(--calculator-angle-degree-button-bg-color);
-	color: var(--calculator-degree-button-fg-color);
+	color: var(--calculator-angle-degree-button-fg-color);
 	font-size: var(--fs-trig-button);
 }
 
 .calculator-angle-rad-button {
 	background: var(--calculator-angle-rad-button-bg-color);
-	color: var(--calculator-rad-button-fg-color);
+	color: var(--calculator-angle-rad-button-fg-color);
 	font-size: var(--fs-trig-button);
 }
 
