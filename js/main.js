@@ -30,9 +30,6 @@ let isAngleUnitRad = true
 const OPERATIONS = ['+', '-', '*', '/', '^', '%', '√']
 
 function refreshCalculatorDisplay() {
-	if (Number(equationTerm) <= 1e-7)
-		equationTerm = '0'
-
 	DOM_CALCULATOR_DISPLAY_EQUATION.innerText = equation
 	DOM_CALCULATOR_DISPLAY_TERM.innerText = equationTerm
 	canAddDecimal = !equationTerm.includes('.')
@@ -353,12 +350,3 @@ CALCULATOR_BUTTON_LAYOUT.forEach( (BUTTON_TEXT) => {
 
 // fill calculator display
 refreshCalculatorDisplay()
-
-// set calculator body color
-{
-	const SELECTION = COLORS[Math.floor(Math.random()*COLORS.length)]
-	const COLOR = 'var(--color-alpha-' + SELECTION + ')'
-	DOM_CALCULATOR_BODY.style.background = 'linear-gradient(to bottom, var(--color-alpha-white), ' + COLOR + ')'
-	DOM_CALCULATOR_BODY.style.boxShadow = '0 0 100px 20px ' + COLOR
-	DOM_HEADING.style.color = COLOR
-}

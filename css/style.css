@@ -44,7 +44,7 @@
 	--color-alpha-red: #f0504faa;
 
 	--color-white: #fdfdfd;
-	--color-alpha-white: #fdfdfdaa;
+	--color-alpha-white: #fdfdfd99;
 	--color-pure-white: #ffffff;
 
 	--color-gray: #2a2d30;
@@ -54,14 +54,14 @@
 
 	/* background colors of containers */
 
-	--body-bg-color: var(--color-black);
+	--body-bg-color: var(--color-light-blue);
 	--main-bg-color: inherit;
 	--header-bg-color: inherit;
-	--calculator-body-bg-color: linear-gradient( to bottom, var(--color-alpha-white), var(--color-alpha-orange) );
+	--calculator-body-bg-color: linear-gradient( to bottom, var(--color-alpha-white), var(--color-alpha-blue) );
 	--calculator-display-bg-color: none;
 	--footer-bg-color: inherit;
 
-	--body-fg-color: var(--color-white);
+	--body-fg-color: var(--color-black);
 	--header-fg-color: inherit;
 	--calculator-display-fg-color: var(--color-black);
 	--calculator-display-equation-fg-color: var(--color-gray);
@@ -69,22 +69,22 @@
 
 	/* calculator number button */
 
-	--calculator-number-button-bg-color: var(--color-green);
+	--calculator-number-button-bg-color: var(--color-alpha-green);
 	--calculator-number-button-fg-color: var(--color-black);
 
 	--calculator-decimal-button-bg-color: var(--calculator-number-button-bg-color);
 	--calculator-decimal-button-fg-color: var(--calculator-number-button-fg-color);
 
-	--calculator-clear-button-bg-color: var(--color-blue);
+	--calculator-clear-button-bg-color: none;
 	--calculator-clear-button-fg-color: var(--color-black);
 
-	--calculator-operation-button-bg-color: var(--color-red);
+	--calculator-operation-button-bg-color: var(--color-alpha-red);
 	--calculator-operation-button-fg-color: var(--color-black);
 
 	--calculator-equals-to-button-bg-color: var(--calculator-operation-button-bg-color);
 	--calculator-equals-to-button-fg-color: var(--calculator-operation-button-fg-color);
 
-	--calculator-trig-button-bg-color: var(--color-yellow);
+	--calculator-trig-button-bg-color: var(--color-alpha-yellow);
 	--calculator-trig-button-fg-color: var(--color-black);
 
 	--calculator-one-over-button-bg-color: var(--calculator-trig-button-bg-color);
@@ -93,10 +93,10 @@
 	--calculator-inversion-button-bg-color: var(--calculator-trig-button-bg-color);
 	--calculator-inversion-button-fg-color: var(--calculator-trig-button-fg-color);
 
-	--calculator-angle-degree-button-bg-color: var(--color-orange);
+	--calculator-angle-degree-button-bg-color: var(--color-alpha-orange);
 	--calculator-angle-degree-button-fg-color: var(--color-black);
 
-	--calculator-angle-rad-button-bg-color: var(--color-yellow);
+	--calculator-angle-rad-button-bg-color: var(--color-alpha-yellow);
 	--calculator-angle-rad-button-fg-color: var(--color-black);
 
 }
@@ -157,10 +157,9 @@ main {
 	background: var(--calculator-body-bg-color);
 	width: 100%;
 	max-width: 500px;
-	border-radius: 20px;
+	border-radius: 10px;
 	padding: 1rem;
 	backdrop-filter: blur(2rem);
-	/* box-shadow: 20px 20px 5px 5px var(--color-shadow-black); */
 
 	display: flex;
 	flex-flow: column nowrap;
@@ -219,8 +218,7 @@ main {
 
 .calculator-button {
 	border: none;
-	padding: 0.4rem 0.1rem;
-	border-radius: 20px;
+	border-radius: 10px;
 	font-size: var(--fs-button);
 	font-weight: bold;
 	font-family: var(--fsty-calculator-button);
