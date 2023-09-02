@@ -43,7 +43,7 @@
 	--color-red: #f0504f;
 	--color-alpha-red: #f0504faa;
 
-	--color-white: #fdfdfd;
+	--color-white: #adadad;
 	--color-alpha-white: #fdfdfd99;
 	--color-pure-white: #ffffff;
 
@@ -54,14 +54,14 @@
 
 	/* background colors of containers */
 
-	--body-bg-color: var(--color-light-blue);
+	--body-bg-color: var(--color-black);
 	--main-bg-color: inherit;
 	--header-bg-color: inherit;
-	--calculator-body-bg-color: linear-gradient( to bottom, var(--color-alpha-white), var(--color-alpha-blue) );
+	--calculator-body-bg-color: linear-gradient( to bottom, var(--color-white), var(--color-blue) );
 	--calculator-display-bg-color: none;
 	--footer-bg-color: inherit;
 
-	--body-fg-color: var(--color-black);
+	--body-fg-color: var(--color-white);
 	--header-fg-color: inherit;
 	--calculator-display-fg-color: var(--color-black);
 	--calculator-display-equation-fg-color: var(--color-gray);
