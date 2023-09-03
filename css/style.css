@@ -54,22 +54,22 @@
 
 	/* background colors of containers */
 
-	--body-bg-color: var(--color-black);
+	--body-bg-color: var(--color-green);
 	--main-bg-color: inherit;
-	--header-bg-color: inherit;
-	--calculator-body-bg-color: linear-gradient( to bottom, var(--color-white), var(--color-blue) );
+	--header-bg-color: var(--color-black);
+	--calculator-body-bg-color: var(--color-alpha-white);
 	--calculator-display-bg-color: none;
 	--footer-bg-color: inherit;
 
-	--body-fg-color: var(--color-white);
-	--header-fg-color: inherit;
+	--body-fg-color: var(--color-black);
+	--header-fg-color: var(--color-pure-white);
 	--calculator-display-fg-color: var(--color-black);
 	--calculator-display-equation-fg-color: var(--color-gray);
 	--footer-fg-color: inherit;
 
 	/* calculator number button */
 
-	--calculator-number-button-bg-color: var(--color-alpha-green);
+	--calculator-number-button-bg-color: var(--color-blue);
 	--calculator-number-button-fg-color: var(--color-black);
 
 	--calculator-decimal-button-bg-color: var(--calculator-number-button-bg-color);
@@ -78,13 +78,13 @@
 	--calculator-clear-button-bg-color: none;
 	--calculator-clear-button-fg-color: var(--color-black);
 
-	--calculator-operation-button-bg-color: var(--color-alpha-red);
+	--calculator-operation-button-bg-color: var(--color-red);
 	--calculator-operation-button-fg-color: var(--color-black);
 
 	--calculator-equals-to-button-bg-color: var(--calculator-operation-button-bg-color);
 	--calculator-equals-to-button-fg-color: var(--calculator-operation-button-fg-color);
 
-	--calculator-trig-button-bg-color: var(--color-alpha-yellow);
+	--calculator-trig-button-bg-color: var(--color-yellow);
 	--calculator-trig-button-fg-color: var(--color-black);
 
 	--calculator-one-over-button-bg-color: var(--calculator-trig-button-bg-color);
@@ -93,10 +93,10 @@
 	--calculator-inversion-button-bg-color: var(--calculator-trig-button-bg-color);
 	--calculator-inversion-button-fg-color: var(--calculator-trig-button-fg-color);
 
-	--calculator-angle-degree-button-bg-color: var(--color-alpha-orange);
+	--calculator-angle-degree-button-bg-color: var(--color-orange);
 	--calculator-angle-degree-button-fg-color: var(--color-black);
 
-	--calculator-angle-rad-button-bg-color: var(--color-alpha-yellow);
+	--calculator-angle-rad-button-bg-color: var(--color-yellow);
 	--calculator-angle-rad-button-fg-color: var(--color-black);
 
 }
